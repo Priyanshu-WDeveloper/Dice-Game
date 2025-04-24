@@ -24,29 +24,23 @@ const DiceGame = () => {
     // return generateRandomNumber(1, 7)
     const randomNum = generateRandomNumber(1, 7);
     setCurrentDice(randomNum);
-    if (randomNum === isSelectedNum) {
-      setScore((prev) => prev + randomNum);
-    } else {
-      setScore((prev) => prev - 2);
-    }
   };
   const isSelected = (value: number) => {
     if (isSelectedNum === value) {
       setIsSelectedNum(undefined);
     } else {
       setIsSelectedNum(value);
-      console.log(value);
-      console.log("Is Selected", isSelectedNum);
     }
   };
   useEffect(() => {
     if (isSelectedNum === undefined) return;
+
     if (currentDice === isSelectedNum) {
-      setScore((prev) => prev + currentDice);
+      setScore((prev) => prev + isSelectedNum);
     } else {
       setScore((prev) => prev - 2);
     }
-  }, []);
+  }, [currentDice]);
   const handleReset = () => {
     setScore(0);
   };
